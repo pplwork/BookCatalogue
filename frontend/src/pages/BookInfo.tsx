@@ -32,6 +32,7 @@ const BookInfo = (): JSX.Element => {
         </div>
         <div className="book__details">
           <div className="book__title">{book?.title}</div>
+          <div className="book__year">{book?.year}</div>
           <div className="book__description">{book?.description}</div>
         </div>
       </div>

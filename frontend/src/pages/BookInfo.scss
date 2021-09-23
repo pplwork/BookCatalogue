@@ -1,7 +1,7 @@
 @import "../colors.scss";
 
 .bookinfoContainer {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -25,6 +25,8 @@
     &__image {
       width: 50%;
       max-height: 100vh;
+      min-height: 15rem;
+      min-width: 20rem;
       overflow: hidden;
       & > img {
         height: 100%;
@@ -47,6 +49,15 @@
     &__title {
       font-size: 4rem;
       font-weight: 600;
+      @media only screen and (max-width: 56.25em) {
+        text-align: center;
+        word-break: break-all;
+      }
+    }
+    &__year {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-top: -2rem;
       @media only screen and (max-width: 56.25em) {
         text-align: center;
       }
