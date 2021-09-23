@@ -1,0 +1,60 @@
+@import "../colors.scss";
+
+.bookinfoContainer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  .left {
+    flex: 1;
+    transition: all 0.5s ease;
+  }
+
+  .book {
+    flex: 4;
+    background-color: $offwhite;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    @media only screen and (max-width: 56.25em) {
+      flex-direction: column;
+      padding-top: 5rem;
+      align-items: center;
+    }
+    &__image {
+      width: 50%;
+      & > img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+    &__details {
+      padding-right: 4rem;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      text-align: justify;
+      @media only screen and (max-width: 56.25em) {
+        width: 75%;
+        padding-right: 0rem;
+      }
+    }
+    &__title {
+      font-size: 4rem;
+      font-weight: 600;
+      @media only screen and (max-width: 56.25em) {
+        text-align: center;
+      }
+    }
+    &__description {
+      font-size: 1.4rem;
+    }
+  }
+  .right {
+    flex: 1;
+    transition: all 0.5s ease;
+  }
+}
