@@ -38,7 +38,9 @@ const Home = (): JSX.Element => {
     (async () => {
       let data: Book[];
       try {
-        data = (await axios.get("http://localhost:8000/books")).data;
+        data = (
+          await axios.get("https://bookcatalogue-pplwork.herokuapp.com/books")
+        ).data;
       } catch (err) {
         console.log(err);
         return;

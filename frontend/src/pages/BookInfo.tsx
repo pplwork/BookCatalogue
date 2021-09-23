@@ -11,7 +11,11 @@ const BookInfo = (): JSX.Element => {
     (async () => {
       let data: Book;
       try {
-        data = (await axios.get(`http://localhost:8000/books/${id}`)).data;
+        data = (
+          await axios.get(
+            `https://bookcatalogue-pplwork.herokuapp.com/books/${id}`
+          )
+        ).data;
       } catch (err) {
         console.log(err);
         return;
