@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Book from "../interfaces/book";
+import IBook from "../interfaces/book";
 import { useHistory } from "react-router-dom";
 import "./Home.scss";
+import { PropagateLoader } from "react-spinners";
 
 type CardProps = {
   title: string;
@@ -18,11 +19,25 @@ const Card = ({
   year,
   description,
 }: CardProps): JSX.Element => {
+  const [loading, setLoading] = useState<boolean>(true);
   const history = useHistory();
   return (
     <div className="card" onClick={() => history.push(`/book/${id}`)}>
       <div className="card__image">
-        <img src={image} alt="book cover" />
+        <div className="loader" style={{ display: loading ? "flex" : "none" }}>
+          <PropagateLoader
+            loading={true}
+            size={8}
+            speedMultiplier={3}
+            color="white"
+          />
+        </div>
+        <img
+          src={image}
+          alt="book cover"
+          onLoad={() => setLoading(false)}
+          style={{ display: loading ? "none" : "block" }}
+        />
       </div>
       <div className="card__details">
         <div className="card__details-title">{title}</div>
@@ -33,10 +48,10 @@ const Card = ({
 };
 
 const Home = (): JSX.Element => {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<IBook[]>([]);
   useEffect(() => {
     (async () => {
-      let data: Book[];
+      let data: IBook[];
       try {
         data = (
           await axios.get("https://bookcatalogue-pplwork.herokuapp.com/books")
@@ -52,7 +67,7 @@ const Home = (): JSX.Element => {
     <div className="container">
       <div className="title">Book Catalogue</div>
       <div className="booklist">
-        {books.map((book: Book): JSX.Element => {
+        {books.map((book: IBook): JSX.Element => {
           return <Card key={book.id} {...book} />;
         })}
       </div>

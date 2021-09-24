@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Book from "../interfaces/book";
+import IBook from "../interfaces/book";
+import { PropagateLoader } from "react-spinners";
 import "./BookInfo.scss";
 
 const BookInfo = (): JSX.Element => {
   const { id } = useParams<{ id?: string }>();
-  const [book, setBook] = useState<Book | null>(null);
+  const [book, setBook] = useState<IBook | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     (async () => {
-      let data: Book;
+      let data: IBook;
       try {
         data = (
           await axios.get(
@@ -28,7 +30,23 @@ const BookInfo = (): JSX.Element => {
       <div className="left"></div>
       <div className="book">
         <div className="book__image">
-          <img src={book?.image} alt="book cover" />
+          <div
+            className="loader"
+            style={{ display: loading ? "flex" : "none" }}
+          >
+            <PropagateLoader
+              loading={true}
+              size={12}
+              speedMultiplier={2}
+              color="white"
+            />
+          </div>
+          <img
+            src={book?.image}
+            alt="book cover"
+            onLoad={() => setLoading(false)}
+            style={{ display: loading ? "none" : "block" }}
+          />
         </div>
         <div className="book__details">
           <div className="book__title">{book?.title}</div>

@@ -19,7 +19,7 @@ admin.initializeApp({
 const app = express();
 app.use(cors({ origin: "*" }));
 
-interface Book {
+interface IBook {
   title: string;
   year: number;
   description: string;
@@ -29,11 +29,11 @@ interface Book {
 
 // route handler for the books route
 app.get("/books", async (req, res) => {
-  let books: Book[];
+  let books: IBook[];
   try {
     books = (await admin.firestore().collection("books").get()).docs.map(
-      (doc): Book => {
-        const bk = doc.data() as Book;
+      (doc): IBook => {
+        const bk = doc.data() as IBook;
         return {
           ...bk,
           id: doc.id,
@@ -49,11 +49,11 @@ app.get("/books", async (req, res) => {
 // route handler for the books/:id route
 app.get("/books/:id", async (req, res) => {
   const id: string = req.params.id;
-  let book: Book;
+  let book: IBook;
   try {
     book = (
       await admin.firestore().collection("books").doc(id).get()
-    ).data() as Book;
+    ).data() as IBook;
     book.id = id;
   } catch (err) {
     return res.json(err);
