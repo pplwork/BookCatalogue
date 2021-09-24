@@ -2,7 +2,7 @@
 
 This Directory is the backend for the [BookCatalogue](https://bookcatalogue-pplwork.netlify.app/) Website.
 
-The backend is built using NodeJS(Express-TypeScript) and Firebase/Firebase Storage is used as the database/storage.
+The [backend](https://bookcatalogue-pplwork.herokuapp.com/) is built using NodeJS(Express-TypeScript) and Firebase/Firebase Storage is used as the database/storage.
 
 ## Setup
 For the sake of this project i have saved the Firebase Service Worker credentials file in a json file. You need to replace this file with your own credentials.
