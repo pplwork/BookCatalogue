@@ -66,7 +66,7 @@ const Home = (): JSX.Element => {
   return (
     <div className="container">
       <div className="title">Book Catalogue</div>
-      <div className="booklist">
+      <div className="booklist" data-testid="book-list">
         {books.map((book: IBook): JSX.Element => {
           return <Card key={book.id} {...book} />;
         })}
