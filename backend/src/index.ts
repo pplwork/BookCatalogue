@@ -65,3 +65,6 @@ app.get("/books/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`server started at port ${port}`);
 });
+
+// exporting app for test purposes
+export default app;
